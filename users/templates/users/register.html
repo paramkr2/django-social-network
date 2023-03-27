@@ -1,0 +1,30 @@
+<!--users/templates/users/register.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="column">
+	<div class="box">
+	<h2 class="label is-large">Sign Up</h2>
+		</br>
+		<form method="post">
+			{% csrf_token %}
+			{% for field in form %}
+				<div class="field">
+					
+					<label class="label is-medium">{{ field.label_tag }}</label>
+					 <div class="control has-icons-left has-icons-right">
+						{{ field }}
+					  </div>
+					 
+				</div>
+			{% endfor %}
+			<input class="button is-link is-focused" type="submit" value="Register">
+		</form>
+		<div class = "box">
+			<a href="{% url 'users:login' %}">Back to login</a>
+		<div class="box">
+	</div>
+</div>
+{% endblock %}

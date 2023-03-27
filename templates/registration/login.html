@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+input {
+    padding: 9px;
+    border: solid 1px #E5E5E5;
+    outline: 0;
+    font: normal 13px/100% Verdana, Tahoma, sans-serif;
+    width: 100%;
+    background: #FFFFFF;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+</style>
+<div class="column">
+	<div class="box">
+		<h2 class="label is-large">LOGIN</h2>
+		<form method="post">
+			{% csrf_token %}
+			{% if form.non_field_errors  %}
+				<div class="notification is-danger">
+				  <button class="delete"></button>
+					{{ form.non_field_errors  }}
+				  </div>
+			{% endif %}
+			{% for field in form %}
+				<div class="field">
+					
+					<label class="label is-medium">{{ field.label_tag }}</label>
+					 <div class="control has-icons-left has-icons-right">
+						{{ field }}
+					  </div>
+				</div>
+			{% endfor %}
+			
+			<input class="button is-link is-focused" type="submit" value="Login">
+			<a href="{% url 'users:password_reset' %}">reset password</a>
+		</form>
+		<div class="box">
+			<a href="{% url 'users:register' %}">
+				<button class="button is-info">SignUp</button>
+			</a>
+		</div>
+		
+	</div>
+</div>
+
+
+{% endblock %}
